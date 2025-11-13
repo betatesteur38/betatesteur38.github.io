@@ -1,0 +1,5 @@
+document.links(<a class="navigue" href="ACCUEIL.html" title="Accueil">Accueil</a>)
+document.links(<a class="navigue" href="APPLICATION.html" title="Accueil">Application</a>)
+document.links(<a class="navigue" href="DONNEES_TRAJETS.html" title="Accueil">Données trajets</a>)
+document.links(<a class="navigue" href="https://discord.gg/HXQkTjyCyn" title="Accueil">Discord</a>)
+document.links(<a class="navigue" href="https://www.youtube.com/channel/UChpckusrfolYpcUOCJBo_kQ" title="Accueil">Chaîne YouTube</a>)
