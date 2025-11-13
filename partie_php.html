@@ -1,0 +1,155 @@
+Voici une page HTML simple et claire qui résume les bases du PHP. Elle inclut des exemples de syntaxe, des fonctionnalités courantes et des bonnes pratiques.
+
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résumé du PHP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Résumé du PHP</h1>
+
+        <h2>1. Introduction</h2>
+        <p>PHP (Hypertext Preprocessor) est un langage de script côté serveur utilisé pour développer des sites web dynamiques. Il est souvent intégré dans du HTML.</p>
+
+        <h2>2. Syntaxe de base</h2>
+        <p>Les balises PHP s'ouvrent avec <code>&lt;?php</code> et se ferment avec <code>?&gt;</code>.</p>
+        <pre>
+&lt;?php
+    echo "Bonjour, monde!";
+?&gt;
+        </pre>
+
+        <h2>3. Variables</h2>
+        <p>Les variables commencent par <code>$</code>.</p>
+        <pre>
+&lt;?php
+    $nom = "Alice";
+    $age = 25;
+    echo "Je m'appelle $nom et j'ai $age ans.";
+?&gt;
+        </pre>
+
+        <h2>4. Structures de contrôle</h2>
+        <h3>Conditions</h3>
+        <pre>
+&lt;?php
+    $heure = 14;
+    if ($heure < 12) {
+        echo "Bonjour!";
+    } elseif ($heure < 18) {
+        echo "Bon après-midi!";
+    } else {
+        echo "Bonsoir!";
+    }
+?&gt;
+        </pre>
+
+        <h3>Boucles</h3>
+        <pre>
+&lt;?php
+    // Boucle for
+    for ($i = 0; $i < 5; $i++) {
+        echo "L'itération numéro $i<br>";
+    }
+
+    // Boucle while
+    $j = 0;
+    while ($j < 5) {
+        echo "L'itération numéro $j<br>";
+        $j++;
+    }
+?&gt;
+        </pre>
+
+        <h2>5. Tableaux</h2>
+        <pre>
+&lt;?php
+    $fruits = array("pomme", "banane", "orange");
+    echo $fruits[0]; // Affiche "pomme"
+
+    // Tableau associatif
+    $personne = array(
+        "nom" => "Alice",
+        "âge" => 25,
+        "ville" => "Paris"
+    );
+    echo $personne["nom"]; // Affiche "Alice"
+?&gt;
+        </pre>
+
+        <h2>6. Fonctions</h2>
+        <pre>
+&lt;?php
+    function direBonjour($nom) {
+        return "Bonjour, $nom!";
+    }
+    echo direBonjour("Alice"); // Affiche "Bonjour, Alice!"
+?&gt;
+        </pre>
+
+        <h2>7. Connexion à une base de données (MySQL)</h2>
+        <pre>
+&lt;?php
+    $serveur = "localhost";
+    $utilisateur = "utilisateur";
+    $motDePasse = "motdepasse";
+    $baseDeDonnees = "ma_base";
+
+    $connexion = new mysqli($serveur, $utilisateur, $motDePasse, $baseDeDonnees);
+
+    if ($connexion->connect_error) {
+        die("La connexion a échoué: " . $connexion->connect_error);
+    }
+    echo "Connexion réussie!";
+?&gt;
+        </pre>
+
+        <h2>8. Bonnes pratiques</h2>
+        <ul>
+            <li>Toujours valider et nettoyer les entrées utilisateur pour éviter les injections SQL.</li>
+            <li>Utiliser des mots de passe sécurisés pour les bases de données.</li>
+            <li>Éviter d'afficher les erreurs PHP en production.</li>
+            <li>Utiliser des commentaires pour expliquer le code complexe.</li>
+        </ul>
+
+        <h2>9. Ressources utiles</h2>
+        <p>
+            <a href="https://www.php.net/manual/fr/" target="_blank">Documentation officielle PHP</a><br>
+            <a href="https://www.w3schools.com/php/" target="_blank">Tutoriels W3Schools</a>
+        </p>
+        <nav>
+            <a class="navigue" href="presentation_html_css.html" class="button" title="ACCUEIL">ACCUEIL</a>
+            <a class="navigue" href="partie_HTML.html" class="button" title="partie_HTML">partie_HTML</a>
+            <a class="navigue" href="partie_CSS.html" class="button" title="partie_CSS">partie_CSS</a>
+            <a class="navigue" href="partie_php.html" class="button" title="partie_PHP">partie_PHP</a>
+            <a class="navigue" href="partie_javascript.html" class="button" title="partie_JS">partie_JS</a>
+        </nav>
+    </div>
+</body>
+</html>
