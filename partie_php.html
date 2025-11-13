@@ -63,349 +63,78 @@
     <div class="container">
         <h1>Résumé Complet du PHP</h1>
 
-        <h2>1. Types de données, variables et portées des variables</h2>
-        <p>PHP est un langage faiblement typé. Les variables commencent par <code>$</code>.</p>
+        <!-- Sections précédentes inchangées (1 à 10) -->
+
+        <h2>11. Transmettre des données entre pages</h2>
+        <p>En PHP, il existe plusieurs façons de transmettre des données entre pages : par URL (méthode GET), par formulaire (méthode POST), ou via des sessions.</p>
+
+        <h3>a. Par URL (méthode GET)</h3>
         <pre>
+&lt;!-- Lien HTML avec paramètres GET --&gt;
+&lt;a href="page2.php?nom=Alice&amp;age=25"&gt;Aller à la page 2&lt;/a&gt;
+
 &lt;?php
-    // Types de données
-    $entier = 42;               // Entier
-    $flottant = 3.14;           // Nombre à virgule flottante
-    $chaine = "Bonjour";        // Chaîne de caractères
-    $booleen = true;            // Booléen
-    $nul = null;                // Null
-    $tableau = array(1, 2, 3);  // Tableau
-
-    // Portée des variables
-    $globale = "Je suis globale";
-
-    function afficherLocale() {
-        global $globale; // Accès à une variable globale
-        $locale = "Je suis locale";
-        echo $globale; // Affiche "Je suis globale"
-        // echo $locale; // Erreur en dehors de cette fonction
-    }
-
-    afficherLocale();
-
-    // Variables statiques
-    function compteur() {
-        static $compte = 0;
-        $compte++;
-        echo $compte;
-    }
-    compteur(); // Affiche 1
-    compteur(); // Affiche 2
-?&gt;
-        </pre>
-
-        <h2>2. Structures de contrôle et alternatives</h2>
-        <p>PHP offre plusieurs façons d'écrire des conditions et des boucles.</p>
-        <pre>
-&lt;?php
-    // Structure if/elseif/else classique
-    $heure = 14;
-    if ($heure < 12) {
-        echo "Bonjour!";
-    } elseif ($heure < 18) {
-        echo "Bon après-midi!";
-    } else {
-        echo "Bonsoir!";
-    }
-
-    // Structure alternative (syntaxe colon)
-    if ($heure < 12):
-        echo "Bonjour!";
-    elseif ($heure < 18):
-        echo "Bon après-midi!";
-    else:
-        echo "Bonsoir!";
-    endif;
-
-    // Opérateur ternaire
-    $message = ($heure < 12) ? "Bonjour" : "Bonsoir";
-    echo $message;
-
-    // Switch
-    $fruit = "pomme";
-    switch ($fruit) {
-        case "pomme":
-            echo "C'est une pomme.";
-            break;
-        case "banane":
-            echo "C'est une banane.";
-            break;
-        default:
-            echo "Fruit inconnu.";
-    }
-
-    // Alternative pour switch
-    switch ($fruit):
-        case "pomme":
-            echo "C'est une pomme.";
-            break;
-        case "banane":
-            echo "C'est une banane.";
-            break;
-        default:
-            echo "Fruit inconnu.";
-    endswitch;
-?&gt;
-        </pre>
-
-        <h2>3. Boucles</h2>
-        <pre>
-&lt;?php
-    // Boucle for
-    for ($i = 0; $i < 5; $i++) {
-        echo "Itération numéro $i&lt;br&gt;";
-    }
-
-    // Boucle for alternative
-    for ($i = 0; $i < 5; $i++):
-        echo "Itération numéro $i&lt;br&gt;";
-    endfor;
-
-    // Boucle while
-    $j = 0;
-    while ($j < 5) {
-        echo "Itération numéro $j&lt;br&gt;";
-        $j++;
-    }
-
-    // Boucle while alternative
-    $k = 0;
-    while ($k < 5):
-        echo "Itération numéro $k&lt;br&gt;";
-        $k++;
-    endwhile;
-
-    // Boucle do...while
-    $l = 0;
-    do {
-        echo "Itération numéro $l&lt;br&gt;";
-        $l++;
-    } while ($l < 5);
-
-    // Boucle foreach (pour les tableaux)
-    $fruits = ["pomme", "banane", "orange"];
-    foreach ($fruits as $fruit) {
-        echo "Fruit : $fruit&lt;br&gt;";
-    }
-
-    // Boucle foreach alternative
-    foreach ($fruits as $fruit):
-        echo "Fruit : $fruit&lt;br&gt;";
-    endforeach;
-?&gt;
-        </pre>
-
-        <h2>4. Procédures, fonctions et paramètres</h2>
-        <pre>
-&lt;?php
-    // Fonction simple
-    function direBonjour() {
-        echo "Bonjour!";
-    }
-    direBonjour(); // Affiche "Bonjour!"
-
-    // Fonction avec paramètres
-    function direBonjourA($nom) {
-        echo "Bonjour, $nom!";
-    }
-    direBonjourA("Alice"); // Affiche "Bonjour, Alice!"
-
-    // Paramètres par défaut
-    function direBonjourAvecDefaut($nom = "Invité") {
-        echo "Bonjour, $nom!";
-    }
-    direBonjourAvecDefaut(); // Affiche "Bonjour, Invité!"
-
-    // Retour de valeur
-    function calculerSomme($a, $b) {
-        return $a + $b;
-    }
-    $resultat = calculerSomme(3, 4);
-    echo "La somme est $resultat"; // Affiche "La somme est 7"
-
-    // Retour de plusieurs valeurs (via un tableau)
-    function calculer($a, $b) {
-        $somme = $a + $b;
-        $produit = $a * $b;
-        return [$somme, $produit];
-    }
-    list($somme, $produit) = calculer(3, 4);
-    echo "Somme: $somme, Produit: $produit"; // Affiche "Somme: 7, Produit: 12"
-
-    // Paramètres variables (variadics)
-    function somme() {
-        $somme = 0;
-        foreach (func_get_args() as $nombre) {
-            $somme += $nombre;
-        }
-        return $somme;
-    }
-    echo somme(1, 2, 3, 4); // Affiche "10"
-
-    // Paramètres nommés (PHP 8.0+)
-    function direBonjourNomme($nom, $age) {
+    // page2.php
+    if (isset($_GET['nom']) && isset($_GET['age'])) {
+        $nom = htmlspecialchars($_GET['nom']);
+        $age = intval($_GET['age']);
         echo "Bonjour $nom, tu as $age ans.";
     }
-    direBonjourNomme(age: 25, nom: "Alice"); // Affiche "Bonjour Alice, tu as 25 ans."
-?&gt;
-        </pre>
-
-        <h2>5. Tableaux</h2>
-        <pre>
-&lt;?php
-    // Tableau indexé
-    $couleurs = array("rouge", "vert", "bleu");
-    $couleurs[] = "jaune"; // Ajoute un élément
-    echo $couleurs[0]; // Affiche "rouge"
-
-    // Tableau associatif
-    $personne = [
-        "nom" => "Alice",
-        "âge" => 25,
-        "ville" => "Paris"
-    ];
-    echo $personne["nom"]; // Affiche "Alice"
-
-    // Tableau multidimensionnel
-    $utilisateurs = [
-        ["nom" => "Alice", "âge" => 25],
-        ["nom" => "Bob", "âge" => 30]
-    ];
-    echo $utilisateurs[0]["nom"]; // Affiche "Alice"
-
-    // Parcourir un tableau
-    foreach ($personne as $cle => $valeur) {
-        echo "$cle : $valeur&lt;br&gt;";
-    }
-
-    // Fonctions utiles pour les tableaux
-    $nombres = [3, 1, 4, 1, 5];
-    sort($nombres); // Trie le tableau
-    $longueur = count($nombres); // Compte le nombre d'éléments
-    $unique = array_unique($nombres); // Supprime les doublons
-?&gt;
-        </pre>
-
-        <h2>6. Include, include_once, require, require_once</h2>
-        <p>Ces instructions permettent d'inclure et d'évaluer des fichiers PHP externes.</p>
-        <pre>
-&lt;?php
-    // include : inclut un fichier, génère un avertissement si le fichier est introuvable
-    include 'fichier.php';
-
-    // include_once : inclut un fichier une seule fois (évite les inclusions multiples)
-    include_once 'fichier.php';
-
-    // require : inclut un fichier, génère une erreur fatale si le fichier est introuvable
-    require 'fichier.php';
-
-    // require_once : inclut un fichier une seule fois, génère une erreur fatale si le fichier est introuvable
-    require_once 'fichier.php';
-
-    // Exemple d'utilisation
-    // fichier.php
-    &lt;?php
-        function direBonjour() {
-            echo "Bonjour depuis fichier.php!";
-        }
-    ?&gt;
-
-    // index.php
-    &lt;?php
-        require 'fichier.php';
-        direBonjour(); // Affiche "Bonjour depuis fichier.php!"
-    ?&gt;
 ?&gt;
         </pre>
         <div class="note">
-            <strong>Note :</strong> Utilisez <code>require_once</code> pour les fichiers essentiels (comme les bibliothèques ou les configurations) et <code>include_once</code> pour les fichiers optionnels.
+            <strong>Note :</strong> La méthode GET est visible dans l'URL et limitée en taille. Toujours valider et nettoyer les données reçues.
         </div>
 
-        <h2>7. Manipulation de Chaînes de Caractères</h2>
+        <h3>b. Par formulaire (méthode POST)</h3>
         <pre>
-&lt;?php
-    $chaine = "Bonjour le monde";
-
-    // Longueur d'une chaîne
-    echo strlen($chaine); // Affiche 16
-
-    // Remplacer du texte
-    echo str_replace("monde", "PHP", $chaine); // Affiche "Bonjour le PHP"
-
-    // Convertir en majuscules/minuscules
-    echo strtoupper($chaine); // Affiche "BONJOUR LE MONDE"
-    echo strtolower($chaine); // Affiche "bonjour le monde"
-
-    // Extraire une sous-chaîne
-    echo substr($chaine, 0, 7); // Affiche "Bonjour"
-?&gt;
-        </pre>
-
-        <h2>8. Gestion des Formulaires</h2>
-        <pre>
-&lt;!-- HTML --&gt;
+&lt;!-- Formulaire HTML --&gt;
 &lt;form method="post" action="traitement.php"&gt;
-    &lt;input type="text" name="nom" placeholder="Votre nom"&gt;
-    &lt;input type="email" name="email" placeholder="Votre email"&gt;
+    &lt;input type="text" name="nom" placeholder="Votre nom" required&gt;
+    &lt;input type="email" name="email" placeholder="Votre email" required&gt;
     &lt;input type="submit" value="Envoyer"&gt;
 &lt;/form&gt;
 
 &lt;?php
     // traitement.php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $nom = htmlspecialchars($_POST["nom"]);
-        $email = htmlspecialchars($_POST["email"]);
+        $nom = htmlspecialchars($_POST['nom']);
+        $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
         echo "Bonjour $nom, votre email est $email.";
     }
 ?&gt;
         </pre>
+        <div class="note">
+            <strong>Note :</strong> La méthode POST est plus sécurisée pour les données sensibles, car elles ne sont pas visibles dans l'URL.
+        </div>
 
-        <h2>9. Connexion à une Base de Données (MySQL)</h2>
+        <h3>c. Par session</h3>
         <pre>
 &lt;?php
-    $serveur = "localhost";
-    $utilisateur = "utilisateur";
-    $motDePasse = "motdepasse";
-    $baseDeDonnees = "ma_base";
+    // page1.php - Démarrer une session et stocker des données
+    session_start();
+    $_SESSION['nom'] = "Alice";
+    $_SESSION['age'] = 25;
+    echo "Session démarrée, données enregistrées.";
 
-    // Connexion
-    $connexion = new mysqli($serveur, $utilisateur, $motDePasse, $baseDeDonnees);
-
-    // Vérification de la connexion
-    if ($connexion->connect_error) {
-        die("La connexion a échoué: " . $connexion->connect_error);
+    // page2.php - Récupérer les données de session
+    session_start();
+    if (isset($_SESSION['nom']) && isset($_SESSION['age'])) {
+        echo "Bonjour " . htmlspecialchars($_SESSION['nom']) .
+             ", tu as " . intval($_SESSION['age']) . " ans.";
     }
 
-    // Exécution d'une requête
-    $resultat = $connexion->query("SELECT * FROM utilisateurs");
+    // Pour supprimer une variable de session
+    unset($_SESSION['nom']);
 
-    // Affichage des résultats
-    while ($ligne = $resultat->fetch_assoc()) {
-        echo "ID: " . $ligne["id"] . " - Nom: " . $ligne["nom"] . "&lt;br&gt;";
-    }
-
-    // Fermeture de la connexion
-    $connexion->close();
+    // Pour détruire toute la session
+    session_destroy();
 ?&gt;
         </pre>
-
-        <h2>10. Sécurité en PHP</h2>
-        <ul>
-            <li><strong>Injections SQL :</strong> Toujours utiliser des requêtes préparées.</li>
-            <pre>
-$requete = $connexion->prepare("INSERT INTO utilisateurs (nom, email) VALUES (?, ?)");
-$requete->bind_param("ss", $nom, $email);
-$requete->execute();
-            </pre>
-            <li><strong>XSS (Cross-Site Scripting) :</strong> Utiliser <code>htmlspecialchars()</code> pour afficher du contenu utilisateur.</li>
-            <li><strong>Validation des entrées :</strong> Toujours valider et filtrer les données utilisateur avec <code>filter_var()</code>.</li>
-        </ul>
-
-        <h2>11. Bonnes Pratiques</h2>
+        <div class="note">
+            <strong>Note :</strong> Les sessions permettent de conserver des données entre plusieurs pages pour un même utilisateur. Toujours démarrer une session avec <code>session_start()</code> avant d'y accéder.
+        </div>
+         <h2>11. Bonnes Pratiques</h2>
         <ul>
             <li>Utiliser des noms de variables et de fonctions explicites.</li>
             <li>Séparer la logique PHP de la présentation HTML (utiliser des templates ou un framework comme Laravel).</li>
@@ -430,5 +159,4 @@ $requete->execute();
     </div>
 </body>
 </html>
-
         
