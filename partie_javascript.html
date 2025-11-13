@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résumé de JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Résumé de JavaScript</h1>
+
+        <h2>1. Introduction</h2>
+        <p>JavaScript est un langage de programmation utilisé pour rendre les pages web interactives. Il s'exécute côté client (dans le navigateur).</p>
+
+        <h2>2. Syntaxe de base</h2>
+        <p>JavaScript peut être intégré directement dans une page HTML avec la balise <code>&lt;script&gt;</code>.</p>
+        <pre>
+&lt;script&gt;
+    console.log("Bonjour, monde!");
+&lt;/script&gt;
+        </pre>
+
+        <h2>3. Variables</h2>
+        <p>Les variables peuvent être déclarées avec <code>let</code>, <code>const</code> ou <code>var</code>.</p>
+        <pre>
+let nom = "Alice";
+const age = 25;
+var ville = "Paris";
+console.log(`Je m'appelle ${nom}, j'ai ${age} ans et j'habite à ${ville}.`);
+        </pre>
+
+        <h2>4. Structures de contrôle</h2>
+        <h3>Conditions</h3>
+        <pre>
+let heure = 14;
+if (heure < 12) {
+    console.log("Bonjour!");
+} else if (heure < 18) {
+    console.log("Bon après-midi!");
+} else {
+    console.log("Bonsoir!");
+}
+        </pre>
+
+        <h3>Boucles</h3>
+        <pre>
+// Boucle for
+for (let i = 0; i < 5; i++) {
+    console.log(`Itération numéro ${i}`);
+}
+
+// Boucle while
+let j = 0;
+while (j < 5) {
+    console.log(`Itération numéro ${j}`);
+    j++;
+}
+        </pre>
+
+        <h2>5. Tableaux</h2>
+        <pre>
+let fruits = ["pomme", "banane", "orange"];
+console.log(fruits[0]); // Affiche "pomme"
+
+// Méthodes utiles
+fruits.push("kiwi"); // Ajoute un élément
+fruits.pop(); // Retire le dernier élément
+        </pre>
+
+        <h2>6. Fonctions</h2>
+        <pre>
+function direBonjour(nom) {
+    return `Bonjour, ${nom}!`;
+}
+console.log(direBonjour("Alice")); // Affiche "Bonjour, Alice!"
+
+// Fonction fléchée (ES6)
+const direBonjourArrow = (nom) => `Bonjour, ${nom}!`;
+console.log(direBonjourArrow("Bob")); // Affiche "Bonjour, Bob!"
+        </pre>
+
+        <h2>7. Objets</h2>
+        <pre>
+let personne = {
+    nom: "Alice",
+    age: 25,
+    ville: "Paris",
+    direBonjour: function() {
+        console.log(`Bonjour, je m'appelle ${this.nom}.`);
+    }
+};
+console.log(personne.nom); // Affiche "Alice"
+personne.direBonjour(); // Affiche "Bonjour, je m'appelle Alice."
+        </pre>
+
+        <h2>8. Manipulation du DOM</h2>
+        <pre>
+// Sélectionner un élément
+let titre = document.querySelector("h1");
+
+// Modifier son contenu
+titre.textContent = "Nouveau titre";
+
+// Ajouter un événement
+let bouton = document.querySelector("button");
+bouton.addEventListener("click", () => {
+    alert("Bouton cliqué !");
+});
+        </pre>
+
+        <h2>9. Bonnes pratiques</h2>
+        <ul>
+            <li>Utiliser <code>const</code> par défaut, et <code>let</code> si la variable doit être réaffectée.</li>
+            <li>Éviter d'utiliser <code>var</code> pour éviter les problèmes de portée.</li>
+            <li>Utiliser des noms de variables clairs et explicites.</li>
+            <li>Commenter le code complexe pour faciliter la maintenance.</li>
+        </ul>
+
+        <h2>10. Ressources utiles</h2>
+        <p>
+            <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript" target="_blank">Documentation MDN JavaScript</a><br>
+            <a href="https://www.w3schools.com/js/" target="_blank">Tutoriels W3Schools</a>
+        </p>
+        <nav>
+            <a class="navigue" href="presentation_html_css.html" class="button" title="ACCUEIL">ACCUEIL</a>
+            <a class="navigue" href="partie_HTML.html" class="button" title="partie_HTML">partie_HTML</a>
+            <a class="navigue" href="partie_CSS.html" class="button" title="partie_CSS">partie_CSS</a>
+            <a class="navigue" href="partie_php.html" class="button" title="partie_PHP">partie_PHP</a>
+            <a class="navigue" href="partie_javascript.html" class="button" title="partie_JS">partie_JS</a>
+        </nav>
+    </div>
+</body>
+</html>
